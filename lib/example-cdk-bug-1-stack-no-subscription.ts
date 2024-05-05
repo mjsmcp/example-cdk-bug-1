@@ -6,7 +6,10 @@ import * as snsSubscriptions from 'aws-cdk-lib/aws-sns-subscriptions'
 
 import { Construct } from 'constructs';
 
-export class ExampleCdkBug1Stack extends cdk.Stack {
+/**
+ * Does not generate a circular dependency
+ */
+export class ExampleCdkBug1StackNoSubscription extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
@@ -21,7 +24,5 @@ export class ExampleCdkBug1Stack extends cdk.Stack {
       encryptionMasterKey: key
     })
 
-    // Comment this line out to see the statement not be added
-    topic.addSubscription(new snsSubscriptions.SqsSubscription(queue));
   }
 }

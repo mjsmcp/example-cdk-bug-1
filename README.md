@@ -2,6 +2,9 @@
 
 This bug appears when a single KMS key is used by both a topic and a queue where the queue is subscribed to the topic.
 
+# Reproduction
+Checkout this repository, run `cdk synth` and look at the generated stacks in `cdk.out`.
+
 # CloudFormation w/ Subscription
 Something about the Subscription between SQS and SNS adds a key policy statement that produces a circular dependency.
 
@@ -113,5 +116,4 @@ The topic doesn't change at all, since it still needs that reference to the KMS 
         aws:cdk:path: "ExampleCdkBug1Stack/ExampleCdkBug1Topic/Resource"
 ```
 
-# Reproduction
-Checkout this repository, run `cdk synth` and look at the generated `cdk.out/ExampleCdkBug1Stack.template.json`
+

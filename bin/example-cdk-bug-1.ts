@@ -1,21 +1,11 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { ExampleCdkBug1Stack } from '../lib/example-cdk-bug-1-stack';
+import { ExampleCdkBug1StackWithSubscription } from '../lib/example-cdk-bug1-stack-with-subscription';
+import {ExampleCdkBug1StackNoSubscription} from "../lib/example-cdk-bug-1-stack-no-subscription";
+import {ExampleCdkBug1StackDifferentKeys} from "../lib/example-cdk-bug1-stack-different-keys";
 
 const app = new cdk.App();
-new ExampleCdkBug1Stack(app, 'ExampleCdkBug1Stack', {
-  /* If you don't specify 'env', this stack will be environment-agnostic.
-   * Account/Region-dependent features and context lookups will not work,
-   * but a single synthesized template can be deployed anywhere. */
-
-  /* Uncomment the next line to specialize this stack for the AWS Account
-   * and Region that are implied by the current CLI configuration. */
-  // env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION },
-
-  /* Uncomment the next line if you know exactly what Account and Region you
-   * want to deploy the stack to. */
-  // env: { account: '123456789012', region: 'us-east-1' },
-
-  /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
-});
+new ExampleCdkBug1StackWithSubscription(app, 'ExampleCdkBug1StackWithSubscription', {});
+new ExampleCdkBug1StackNoSubscription(app, 'ExampleCdkBug1StackNoSubscription', {});
+new ExampleCdkBug1StackDifferentKeys(app, 'ExampleCdkBug1StackDifferentKeys', {});
